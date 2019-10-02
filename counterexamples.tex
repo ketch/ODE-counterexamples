@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\newtheorem{example}{Example}
+\newtheorem{theorem}{Theorem}
+
+\title{Conditions for conservative dynamical systems}
+\author{David I. Ketcheson}
+\date{October 2019}
+
+\begin{document}
+
+\maketitle
+
+Consider the initial value problem
+\begin{align} \label{IVP}
+\begin{split}
+    u'(t) & = f(t,u) \\
+    u(t_0) & = u_0.
+\end{split}
+\end{align}
+
+We are interested in conditions such that
+\begin{align} \label{conservation}
+\|u(t)\| = \|u_0\| \text{ for all } t, u_0.
+\end{align}
+
+\begin{theorem}
+Let $f(t,y)$ be a time-independent, normal, linear operator
+(i.e. $f(t,y)=Ly$ with $LL^T=L^T L$).  Then \eqref{conservation} holds
+if and only if the spectrum of the jacobian of $f$
+is purely imaginary.
+\end{theorem}
+
+One is immediately led to ask whether (either part of) the assertion in the theorem holds when $f$ is some other type of operator.  Some counterexamples follow; they have appeared elsewhere.
+
+\begin{example}
+Consider the system
+\begin{subequations} \label{nonlinear-ode}
+\begin{align}
+u_1'(t) & = \frac{-u_2}{u_1^2 + u_2^2} \\
+u_2'(t) & = \frac{ u_1}{u_1^2 + u_2^2}.
+\end{align}
+\end{subequations}
+Condition \eqref{conservation} holds but the spectrum of $\nabla_u f(u)$
+is real, consisting of one positive and one negative eigenvalue.
+\end{example}
+
+\begin{example}
+This example is taken from Dekker \& Verwer, who developed it based on earlier sources
+going back to Vinograd.  Let $f$ be a linear, time-dependent operator given by $A(t) = E(t) D E^{-1}(t)$ where $D=diag(i,-i)$ and
+\begin{align*}
+E(t) = \begin{pmatrix}
+\cos(\omega t - \theta) & -\cos(\omega t) \\
+-\sin(\omega t - \theta) & \sin(\omega t)
+\end{pmatrix}.
+\end{align*}
+Since $A(t)$ is similar to $D$, its spectrum is purely imaginary.  But, taking
+$\omega=1$ and $\theta=\pi/4$ for example, the solution of \eqref{IVP} grows exponentially in time with
+exponent equal to the real part of $\sqrt{-2+2i}$.
+\end{example}
+
+\end{document}
+
